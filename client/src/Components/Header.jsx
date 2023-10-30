@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Header(){
     return (
         <header className="">
-            <a href="#" className="logo"><img src={require("../images/logo.png")} alt="logo" className="mx-2"/>BLOG</a>
+            <Link to="/" className="logo"><img src={require("../images/logo.png")} alt="logo" className="mx-2"/>BLOG</Link>
             <nav>
-                <a href="#">Login</a>
-                <a href="#">Register</a>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
             </nav>
             {/* <h1>hji</h1> */}
         </header>
