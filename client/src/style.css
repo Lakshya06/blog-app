@@ -1,0 +1,115 @@
+:root{
+    --secondary-color: #2D2D2D;
+}
+
+*{
+    font-family: 'Mooli', sans-serif;
+    /* font-family: 'Nanum Gothic', sans-serif; */
+}
+
+h2{
+    font-weight: 50px;
+}
+
+main{
+    padding: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header{
+    padding: 10px;
+    /* max-width: 700px; */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+header a{
+    text-decoration: none;
+    color: #222;
+}
+
+header a.logo{
+    font-weight: bold;
+}
+
+header a.logo img{
+    height: 2rem;
+    width: 2.4rem;
+}
+
+header nav{
+    display: flex;
+    gap: 15px;
+}
+
+header nav a{
+    padding: 7px;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    color: ghostwhite;
+    /* font-size: 0.9rem; */
+}
+
+header nav a:hover{
+    background-color: black;
+    color: white;
+}
+
+.overlay{
+    background: black;
+}
+
+.carousel{
+    height: 200px;
+    width: 100%;
+    background-image: url("./images/carousel2.jpg");
+    display: flex;
+    /* justify-content: center; */
+    /* border-radius: 15px; */
+    align-items: center;
+    color: ghostwhite;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 50px;
+}
+
+.carousel h1{
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.post img{
+    height: 400px;
+    width: 600px;
+
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ghostwhite;
+    height: 200px;
+    background-color: var(--secondary-color);
+}
+
+div.post div.author-info{
+    display: flex;
+    justify-content: end;
+    gap: 6px;
+    color: gray;
+}
+
+div.post div.author-info a{
+
+    text-decoration: none;
+    color: rgb(196, 0, 0);
+}
+
+div.post p.summary{
+    line-height: 1.7rem;
+}
