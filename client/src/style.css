@@ -53,12 +53,8 @@ header nav a{
 }
 
 header nav a:hover{
-    background-color: black;
+    background-color: #151515;
     color: white;
-}
-
-.overlay{
-    background: black;
 }
 
 .carousel{
@@ -88,15 +84,6 @@ header nav a:hover{
 
 }
 
-footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: ghostwhite;
-    height: 200px;
-    background-color: var(--secondary-color);
-}
-
 div.post div.author-info{
     display: flex;
     justify-content: end;
@@ -112,4 +99,37 @@ div.post div.author-info a{
 
 div.post p.summary{
     line-height: 1.7rem;
+}
+
+.loginForm{
+    /* border: 1px solid rgb(185, 185, 185); */
+    border-radius: 20px;
+    padding: 30px;
+    min-height: 400px;
+}
+
+.loginForm input:focus{
+    border: 0;
+    border-bottom: 1px solid var(--secondary-color);
+    box-shadow: none;
+}
+
+.loginForm button{
+    width: 100%;
+    background-color: var(--secondary-color);
+    border: 0;
+}
+
+.loginForm button:hover{
+    background-color: #151515;
+    color: white;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    height: 200px;
+    background-color: var(--secondary-color);
 }
