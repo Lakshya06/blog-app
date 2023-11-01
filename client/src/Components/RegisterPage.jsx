@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 
 import { Container, Button, Form } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
 
-function RegisterPage(){
+function RegisterPage(props){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [redirect, setRedirect] = useState(false);
 
     async function handleRegisterSubmit(event){
 
@@ -22,12 +24,19 @@ function RegisterPage(){
                 headers: {'Content-type': 'application/json'}
             })
             if(response.status === 200){
-                alert("Registration Successful!");
+                // props.setIsLogged(true);
+                // console.log(props.isLogged);
+                alert("Registration Successful, Login to Continue");
+                setRedirect(true);
             }
             else{
-                alert("Registration Failed!");
+                alert("Registration Failed!, Please try agian");
             }
         }
+    } 
+
+    if(redirect){
+        return <Navigate to={'/login'}/>;
     }
 
     return (

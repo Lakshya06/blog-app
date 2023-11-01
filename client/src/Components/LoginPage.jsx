@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Container, Button, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 
-function LoginPage(){
+function LoginPage(props){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
@@ -18,6 +18,7 @@ function LoginPage(){
         })
 
         if(res.ok){
+            props.setIsLogged(true);
             setRedirect(true);
         }
         else{
