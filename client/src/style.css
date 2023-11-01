@@ -126,6 +126,14 @@ div.post p.summary{
     color: white;
 }
 
+.new-post{
+    position: fixed !important;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--secondary-color) !important;
+    color: ghostwhite !important;
+}
+
 footer{
     display: flex;
     justify-content: center;

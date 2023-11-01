@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { Container, Button, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
+import { UserContext } from "../UserContext";
 
 function LoginPage(props){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
+    const {setUserInfo} = useContext(UserContext);
 
     async function handleLogin(ev){
         ev.preventDefault();
@@ -18,8 +20,12 @@ function LoginPage(props){
         })
 
         if(res.ok){
-            props.setIsLogged(true);
-            setRedirect(true);
+            res.json().then(userInfo => {
+                // <Alert key="primary" variant="primary">Logged In</Alert>
+                props.setIsLogged(true);
+                setRedirect(true);
+                setUserInfo(userInfo);
+            })
         }
         else{
             alert("Wrong Credentials!");

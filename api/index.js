@@ -51,7 +51,10 @@ app.post('/login', async (req, res) => {
                 throw err;
             }
             // console.log("Logged In");
-            res.cookie('token', token).json('ok');
+            res.cookie('token', token).json({
+                id: userData._id,
+                username,
+            });
         })
     }
     else{

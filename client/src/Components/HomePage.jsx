@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Post from  "./Post";
 import {Container} from "react-bootstrap";
+import {Fab} from "@mui/material"
+import { UserContext } from "../UserContext";
+
 
 function HomePage(){
+
+    const {userInfo} = useContext(UserContext);
+    const username = userInfo?.username;
     return (
         <>
         <Container className="carousel px-5" fluid="xs">
@@ -14,6 +20,15 @@ function HomePage(){
         <Post />
         <Post />
         </main>
+        {
+            username && (
+
+            <Fab color="primary" aria-label="add" className="new-post">
+                {/* <AddIcon /> */}
+                +
+            </Fab>
+            )
+        }
       </>
     )
 }

@@ -31,13 +31,13 @@ function Header(props){
         <header className="">
             <Link to="/" className="logo"><img src={require("../images/logo.png")} alt="logo" className="mx-2"/>BLOG</Link>
             <nav>
-                {(username &&  props.isLogged) && (
+                {(username) && (
                     <>
                     <p className="mb-0 pt-2">Welcome, <span style={{color: "rgb(196, 0, 0)"}}>{username}</span></p>
                     <Link onClick={logout}>Logout</Link>
                     </>
                 )}
-                {!(username && props.isLogged )&& (
+                {!(username)&& (
                     <>
                         <Link to="/login">Login</Link>
                         <Link to="/register">Register</Link>
