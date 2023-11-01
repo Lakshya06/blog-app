@@ -4,6 +4,7 @@ const { default: mongoose } = require('mongoose');
 const User = require('./Models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -13,6 +14,7 @@ const salt = bcrypt.genSaltSync(10);
 
 app.use(cors({credentials:true, origin: 'http://localhost:3000'}));
 app.use(express.json())
+app.use(cookieParser());
 
 // mongoose.connect('mongodb+srv://etcetera:Lakshya3120@cluster0.g3uuv0x.mongodb.net/?retryWrites=true&w=majority').then(  () => console.log("DB connected!")).catch(err => console.log(err));
 
@@ -55,6 +57,15 @@ app.post('/login', async (req, res) => {
     else{
         res.status(400).json("Wrong Credentials");
     }
+})
+
+app.get('/profile', (req, res) => {
+    const {token} = req.cookies;
+    jwt.verify(token, secretKey, {}, (err, info) => {
+        if(err) throw err;
+        res.json(info);
+    })
+    // res.json(req.cookies);
 })
 
 app.listen(4000);
