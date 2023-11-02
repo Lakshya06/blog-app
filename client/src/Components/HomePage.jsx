@@ -4,6 +4,7 @@ import Post from  "./Post";
 import {Container} from "react-bootstrap";
 import {Fab} from "@mui/material"
 import { UserContext } from "../UserContext";
+import { Link } from "react-router-dom";
 
 
 function HomePage(){
@@ -22,11 +23,12 @@ function HomePage(){
         </main>
         {
             username && (
-
-            <Fab color="primary" aria-label="add" className="new-post">
-                {/* <AddIcon /> */}
-                +
-            </Fab>
+                <Link to="/create">
+                    <Fab color="primary" aria-label="add" className="new-post">
+                        {/* <AddIcon /> */}
+                        +
+                    </Fab>
+                </Link>
             )
         }
       </>

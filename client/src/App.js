@@ -6,6 +6,7 @@ import Layout from "./Layout";
 import LoginPage from "./Components/LoginPage";
 import RegisterPage from "./Components/RegisterPage";
 import { UserContextProvider } from "./UserContext";
+import CreatePost from "./Components/CreatePost";
 
 function App(){
   const [isLogged, setIsLogged] = useState(false);
@@ -26,6 +27,10 @@ function App(){
         <RegisterPage isLogged={isLogged} setIsLogged={setIsLogged}/>
       }
       />
+
+      <Route path="/create" element={
+        <CreatePost />
+      } />
 
       </Route>
     </Routes>
