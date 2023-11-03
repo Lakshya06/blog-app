@@ -2,11 +2,36 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Container, Button, Form } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
 
 function CreatePost(){
     const [title, setTitle] = useState('');
     const [summary, setSummary] = useState('');
     const [content, setContent] = useState('');
+    const [files, setFiles] = useState('');
+    const [redirect, setRedirect] = useState(false);
+
+    async function createNewPost(event){
+        const data = new FormData();
+        data.set('title', title);
+        data.set('summary', summary);
+        data.set('content', content);
+        data.set('file', files[0]);
+
+        event.preventDefault();
+
+        const res = await fetch('http://localhost:4000/post', {
+            method: 'POST',
+            body: data
+        });
+
+        if(res.ok){
+            setRedirect(true);
+        }
+    }
+    if(redirect){
+        return <Navigate to={'/'}/>
+    }
 
     return (
         <>
@@ -16,10 +41,9 @@ function CreatePost(){
 
             <main>
 
-
             <Container>
             <h2 className="mb-4">Fill in details for a new post</h2>
-                <Form className="loginForm">
+                <Form className="loginForm" onSubmit={createNewPost}>
                     <Form.Group className="mb-4">
                         <Form.Label>Title</Form.Label>
                         <Form.Control
@@ -44,6 +68,7 @@ function CreatePost(){
                         <Form.Label>Choose Title Image</Form.Label>
                         <Form.Control
                         type="file"
+                        onChange={pre => setFiles(pre.target.files)}
                         />
                     </Form.Group>
 
