@@ -19,6 +19,7 @@ const salt = bcrypt.genSaltSync(10);
 app.use(cors({credentials:true, origin: 'http://localhost:3000'}));
 app.use(express.json())
 app.use(cookieParser());
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 // mongoose.connect('mongodb+srv://etcetera:Lakshya3120@cluster0.g3uuv0x.mongodb.net/?retryWrites=true&w=majority').then(  () => console.log("DB connected!")).catch(err => console.log(err));
 
@@ -84,15 +85,30 @@ app.post('/post', uploadMiddleware.single('file') ,async (req, res) => {
     const newPath = path + '.' + ext;
     fs.renameSync(path, newPath);
 
-    const {title, summary, content}= req.body;
-    const postRes = await Post.create({
-        title,
-        summary,
-        content,
-        cover:newPath
-    });
+    const {token} = req.cookies;
 
-    res.json(postRes);
+    jwt.verify(token, secretKey, {}, async (err, info) => {
+        if(err) throw err;
+
+        
+        const {title, summary, content}= req.body;
+        const postRes = await Post.create({
+            title,
+            summary,
+            content,
+            cover:newPath,
+            author: info.id,
+        });
+
+        res.json(postRes);
+        // res.json(info);
+    })
+})
+
+app.get('/posts', async (req, res) => {
+
+    const posts = await Post.find().populate('author', ['username']).sort({createdAt: -1}).limit(5);
+    res.json(posts);
 })
 
 app.post('/logout', (req, res) => {

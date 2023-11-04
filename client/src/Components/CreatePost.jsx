@@ -22,7 +22,8 @@ function CreatePost(){
 
         const res = await fetch('http://localhost:4000/post', {
             method: 'POST',
-            body: data
+            body: data,
+            credentials: 'include',
         });
 
         if(res.ok){

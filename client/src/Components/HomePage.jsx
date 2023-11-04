@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Post from  "./Post";
 import {Container} from "react-bootstrap";
@@ -11,6 +11,18 @@ function HomePage(){
 
     const {userInfo} = useContext(UserContext);
     const username = userInfo?.username;
+
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+      fetch('http://localhost:4000/posts').then(res => {
+        res.json().then(posts => {
+          // console.log(posts);
+          setPosts(posts);
+        })
+      })
+    }, [posts])
+
     return (
         <>
         <Container className="carousel px-5" fluid="xs">
@@ -18,8 +30,13 @@ function HomePage(){
         </Container>
         <main>
           <h2 className="mb-5">Welcome To Our Blog Website</h2>
-        <Post />
-        <Post />
+        {/* <Post />
+        <Post /> */}
+
+        {posts.length > 0 && posts.map(post => (
+          <Post {...post}/>
+        ))}
+
         </main>
         {
             username && (
