@@ -21,7 +21,7 @@ function HomePage(){
           setPosts(posts);
         })
       })
-    }, [posts])
+    }, [])
 
     return (
         <>

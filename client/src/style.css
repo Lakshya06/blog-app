@@ -13,7 +13,7 @@ h2{
 
 main{
     padding: 10px;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -75,14 +75,21 @@ header nav a:hover{
 }
 
 .carousel h1{
-    font-size: 3.5rem;
+    /* font-size: 3.5rem; */
     font-weight: bold;
 }
 
 .post img{
-    height: 400px;
-    width: 600px;
+    /* border-radius: 15px; */
+    min-height: 100px;
+    min-width: 200px;
 
+}
+
+div.post div.content a{
+    text-decoration: none;
+    color: var(--secondary-color);
+    /* color: red; */
 }
 
 div.post div.author-info{
@@ -132,6 +139,32 @@ div.post p.summary{
     right: 20px;
     background-color: var(--secondary-color) !important;
     color: ghostwhite !important;
+}
+
+div.user-details {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 7px;
+    justify-content: end;
+}
+
+div.user-details a{
+    text-decoration: none;
+    color: rgb(196, 0, 0);
+}
+
+.single-post time{
+    color: rgb(141, 141, 141);
+}
+
+.single-post h4{
+    color: rgb(99, 97, 97);
+}
+
+.single-post .post-content{
+    line-height: 1.8rem;
+    letter-spacing: 0.06rem;
 }
 
 footer{

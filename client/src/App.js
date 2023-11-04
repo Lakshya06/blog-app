@@ -7,6 +7,7 @@ import LoginPage from "./Components/LoginPage";
 import RegisterPage from "./Components/RegisterPage";
 import { UserContextProvider } from "./UserContext";
 import CreatePost from "./Components/CreatePost";
+import PostPage from "./Components/PostPage";
 
 function App(){
   const [isLogged, setIsLogged] = useState(false);
@@ -30,6 +31,10 @@ function App(){
 
       <Route path="/create" element={
         <CreatePost />
+      } />
+
+      <Route path="/posts/:id" element={
+        <PostPage />
       } />
 
       </Route>
