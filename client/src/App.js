@@ -8,6 +8,7 @@ import RegisterPage from "./Components/RegisterPage";
 import { UserContextProvider } from "./UserContext";
 import CreatePost from "./Components/CreatePost";
 import PostPage from "./Components/PostPage";
+import EditPost from "./Components/EditPost";
 
 function App(){
   const [isLogged, setIsLogged] = useState(false);
@@ -36,6 +37,10 @@ function App(){
       <Route path="/posts/:id" element={
         <PostPage />
       } />
+
+      <Route path="/edit/:id" element={
+        <EditPost />
+      }/>
 
       </Route>
     </Routes>

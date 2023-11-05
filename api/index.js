@@ -90,7 +90,6 @@ app.post('/post', uploadMiddleware.single('file') ,async (req, res) => {
     jwt.verify(token, secretKey, {}, async (err, info) => {
         if(err) throw err;
 
-        
         const {title, summary, content}= req.body;
         const postRes = await Post.create({
             title,
@@ -103,6 +102,47 @@ app.post('/post', uploadMiddleware.single('file') ,async (req, res) => {
         res.json(postRes);
         // res.json(info);
     })
+})
+
+app.put('/post', uploadMiddleware.single('file'),async(req, res) => {
+    // if(req.file){
+        // res.json(req.file);
+    // }
+
+    let newPath = null;
+
+    if(req.file){
+        const {originalname, path} = req.file;
+        const parts = originalname.split('.');
+        const ext = parts[parts.length-1];
+        newPath = path+'.'+ext;
+        fs.renameSync(path, newPath);
+    }
+
+    const {token} = req.cookies;
+
+    jwt.verify(token, secretKey, {}, async (err, info) => {
+        if(err) throw err;
+
+        const {id, title, summary, content}= req.body;
+        const postData = await Post.findById(id);
+        const isAuthor = JSON.stringify(postData.author) === JSON.stringify(info.id);
+        // res.json(isAuthor);
+
+        if(!isAuthor){
+            return res.status(400).json("You can not update this post!");
+        }
+
+        await postData.updateOne({
+            title,
+            summary,
+            content,
+            cover: newPath ? newPath : postData.cover,
+        })
+
+        res.json(postData);
+    })
+    
 })
 
 app.get('/posts', async (req, res) => {

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import {Container, Row, Col} from "react-bootstrap";
 import { formatISO9075 } from "date-fns";
+import { UserContext } from "../UserContext";
 
 function PostPage(){
 
+    const {userInfo} = useContext(UserContext);
     const [postInfo, setPostInfo] = useState(null);
     const {id} = useParams();
     useEffect(() => {
@@ -41,9 +43,19 @@ function PostPage(){
 
         <div className="user-details mb-3">
              By,<a href="#">{postInfo.author.username}</a>
-             
              <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
         </div>
+
+        {/* {postInfo.author._id} */}
+
+        {userInfo.id === postInfo.author._id && (
+
+            <div className="edit-post mb-3">
+                <Link to={`/edit/${postInfo._id}`}>Edit Post</Link>
+                <a href="">Delete Post</a>
+            </div>
+        )}
+
 
     <h4 className="mb-4">{postInfo.summary}</h4>
 

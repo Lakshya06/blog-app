@@ -3,6 +3,8 @@
 }
 
 *{
+    /* background-color: #2D2D2D; */
+    /* color: whitesmoke !important; */
     font-family: 'Mooli', sans-serif;
     /* font-family: 'Nanum Gothic', sans-serif; */
 }
@@ -165,6 +167,22 @@ div.user-details a{
 .single-post .post-content{
     line-height: 1.8rem;
     letter-spacing: 0.06rem;
+}
+
+.single-post .edit-post{
+    display: flex;
+    justify-content: end;
+    /* flex-direction: column; */
+    gap: 9px;
+}
+
+.single-post .edit-post a{
+    text-decoration: none;
+    /* color: rgb(196, 0, 0); */
+    color: ghostwhite;
+    background-color: var(--secondary-color);
+    padding: 10px;
+    border-radius: 10px;
 }
 
 footer{

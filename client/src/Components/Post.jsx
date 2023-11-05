@@ -17,7 +17,7 @@ function Post({_id ,title, summary, cover, createdAt, author}){
                     <Col xs={12} md={6}>
                     <div className="content">
                         <Link to={`/posts/${_id}`}>
-                            <h2 className="my-3">{title}</h2>
+                            <h3 className="my-3">{title}</h3>
                         </Link>
                         <p className="summary">{summary}.</p>
                         <div className="author-info me-sm-5">
