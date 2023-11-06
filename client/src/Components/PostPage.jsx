@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Navigate } from "react-router-dom";
 import {Container, Row, Col} from "react-bootstrap";
 import { formatISO9075 } from "date-fns";
 import { UserContext } from "../UserContext";
@@ -10,16 +10,51 @@ function PostPage(){
     const [postInfo, setPostInfo] = useState(null);
     const {id} = useParams();
     useEffect(() => {
-        console.log(id);
+        // console.log(id);
         fetch(`http://localhost:4000/posts/${id}`).then(res => {
             res.json().then(postInfo => {
                 setPostInfo(postInfo);
-                console.log(postInfo);
+                // console.log(postInfo);
             })
         })
     }, [])
 
+    
+    const [redirect, setRedirect] = useState(false);
+
+    function deletePost(){
+
+
+        // console.log(userInfo.id);
+
+        fetch(`http://localhost:4000/posts/${id}`, {
+            method: 'DELETE',
+            body: userInfo,
+            credentials: 'include',
+        }).then(res => {
+                if(res.ok){
+                    setRedirect(true);
+                    // console.log("Home page")
+                }
+        })
+        ;
+
+        // res.json();
+
+        // if(res.ok){
+        //     console.log("home page")
+        //     setRedirect(true);
+        // }
+        // else{
+        //     console.log(res);
+        // }
+    }
+
     if(!postInfo) return ' ';
+
+    if(redirect){
+        return <Navigate to={'/'} />
+    }
 
     return(
         <>
@@ -52,7 +87,7 @@ function PostPage(){
 
             <div className="edit-post mb-3">
                 <Link to={`/edit/${postInfo._id}`}>Edit Post</Link>
-                <a href="">Delete Post</a>
+                <a href="#" onClick={deletePost}>Delete Post</a>
             </div>
         )}
 

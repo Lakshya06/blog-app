@@ -157,6 +157,45 @@ app.get('/posts/:id', async (req, res) => {
     res.json(postInfo);
 })
 
+app.delete('/posts/:id', async (req, res) => {
+
+    // res.json("DELETE CALLED");
+
+    const {token} = req.cookies;
+
+    jwt.verify(token, secretKey, {}, async (err, info) => {
+        if(err) throw err;
+
+        const {id}= req.params;
+        const postData = await Post.findById(id);
+        // console.log(id);
+        // res.json(postData);
+        const isAuthor = JSON.stringify(postData.author) === JSON.stringify(info.id);
+        // res.json(isAuthor);
+
+        if(!isAuthor){
+            return res.status(400).json("You can not update this post!");
+        }
+
+        await postData.deleteOne({});
+
+        res.json('ok');
+    })
+
+    // const {id} = req.params;
+    // const postData = await Post.findById(id);
+
+    // const isAuthor = JSON.stringify(req.body.is) === JSON.stringify(postData.author);
+
+    // if(isAuthor){
+    //     res.json("SAME AUTHOR");
+    // }
+    // res.json("DIFFERENT AUTHOR");
+
+    // res.json(req.body);
+
+})
+
 app.post('/logout', (req, res) => {
     res.cookie('token', '').json('ok');
 })

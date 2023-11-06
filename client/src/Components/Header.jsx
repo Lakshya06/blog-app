@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 
 function Header(props){
     // const [username, setUsername] = useState(null);
     const {userInfo, setUserInfo} = useContext(UserContext);
     useEffect(() => {
-        console.log("Logged In");
+        // console.log("Logged In");
         fetch('http://localhost:4000/profile', {
             credentials: 'include',
         }).then(res => {
@@ -15,16 +15,18 @@ function Header(props){
                 setUserInfo(userInfo);
             });
         });
-    },[]);
+    },[props.isLogged]);
+
     function logout(){
-        console.log("Logged Out")
+        // console.log("Logged Out")
         fetch('http://localhost:4000/logout', {
             credentials: 'include',
             method: 'POST'
         })
         props.setIsLogged(false);
         // setUsername(null);
-        setUserInfo(null);
+        setUserInfo(null); 
+        // <Navigate to={'/'} />
     }
     const username = userInfo?.username;
     return (
