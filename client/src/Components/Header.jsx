@@ -15,7 +15,7 @@ function Header(props){
                 setUserInfo(userInfo);
             });
         });
-    },[props.isLogged]);
+    },[]);
 
     function logout(){
         // console.log("Logged Out")
@@ -29,6 +29,7 @@ function Header(props){
         // <Navigate to={'/'} />
     }
     const username = userInfo?.username;
+
     return (
         <header className="">
             <Link to="/" className="logo"><img src={require("../images/logo.png")} alt="logo" className="mx-2"/>BLOG</Link>
@@ -45,6 +46,7 @@ function Header(props){
                         <Link to="/register">Register</Link>
                     </>
                 )}
+
             </nav>
             {/* <h1>hji</h1> */}
         </header>

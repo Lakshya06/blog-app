@@ -9,7 +9,9 @@ const multer = require('multer');
 const uploadMiddleware = multer({dest: 'uploads/'})
 const fs = require('fs');
 const Post = require('./Models/Post');
+require('dotenv').config();
 
+const port = process.env.PORT || 4000;
 const app = express();
 
 const secretKey = '$2b$10$oJ7sla9U5vUp.AXxNyOmHu';
@@ -23,7 +25,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 
 // mongoose.connect('mongodb+srv://etcetera:Lakshya3120@cluster0.g3uuv0x.mongodb.net/?retryWrites=true&w=majority').then(  () => console.log("DB connected!")).catch(err => console.log(err));
 
-mongoose.connect('mongodb://0.0.0.0:27017/blog-app');
+mongoose.connect(process.env.DATABASE);
 
 app.post('/register', async (req, res) => {
     const {username, password} = req.body;
@@ -200,6 +202,6 @@ app.post('/logout', (req, res) => {
     res.cookie('token', '').json('ok');
 })
 
-app.listen(4000);
+app.listen(Port);
 
 // mongodb+srv://etcetera:Lakshya3120@cluster0.g3uuv0x.mongodb.net/?retryWrites=true&w=majority
