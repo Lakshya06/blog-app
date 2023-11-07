@@ -202,6 +202,6 @@ app.post('/logout', (req, res) => {
     res.cookie('token', '').json('ok');
 })
 
-app.listen(Port);
+app.listen(port);
 
 // mongodb+srv://etcetera:Lakshya3120@cluster0.g3uuv0x.mongodb.net/?retryWrites=true&w=majority
