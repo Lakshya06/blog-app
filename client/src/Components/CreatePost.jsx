@@ -3,6 +3,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Container, Button, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
+import { BASE_URL } from "../helper";
 
 function CreatePost(){
     const [title, setTitle] = useState('');
@@ -20,7 +21,7 @@ function CreatePost(){
 
         event.preventDefault();
 
-        const res = await fetch('http://localhost:4000/post', {
+        const res = await fetch(`${BASE_URL}/post`, {
             method: 'POST',
             body: data,
             credentials: 'include',

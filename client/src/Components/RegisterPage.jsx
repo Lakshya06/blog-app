@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Container, Button, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
+import { BASE_URL } from "../helper";
 
 function RegisterPage(props){
     const [username, setUsername] = useState('');
@@ -18,7 +19,7 @@ function RegisterPage(props){
         }
 
         else{
-            const response = await fetch('http://localhost:4000/register', {
+            const response = await fetch(`${BASE_URL}/register`, {
                 method: 'POST',
                 body: JSON.stringify({username, password}),
                 headers: {'Content-type': 'application/json'}

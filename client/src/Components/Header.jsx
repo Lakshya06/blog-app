@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import { BASE_URL } from "../helper";
 
 function Header(props){
     // const [username, setUsername] = useState(null);
     const {userInfo, setUserInfo} = useContext(UserContext);
     useEffect(() => {
         // console.log("Logged In");
-        fetch('http://localhost:4000/profile', {
+        fetch(`${BASE_URL}/profile`, {
             credentials: 'include',
         }).then(res => {
             res.json().then(userInfo => {
@@ -19,7 +20,7 @@ function Header(props){
 
     function logout(){
         // console.log("Logged Out")
-        fetch('http://localhost:4000/logout', {
+        fetch(`${BASE_URL}/logout`, {
             credentials: 'include',
             method: 'POST'
         })

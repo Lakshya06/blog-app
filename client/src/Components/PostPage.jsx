@@ -3,6 +3,7 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import {Container, Row, Col} from "react-bootstrap";
 import { formatISO9075 } from "date-fns";
 import { UserContext } from "../UserContext";
+import { BASE_URL } from "../helper";
 
 function PostPage(){
 
@@ -11,7 +12,7 @@ function PostPage(){
     const {id} = useParams();
     useEffect(() => {
         // console.log(id);
-        fetch(`http://localhost:4000/posts/${id}`).then(res => {
+        fetch(`${BASE_URL}/posts/${id}`).then(res => {
             res.json().then(postInfo => {
                 setPostInfo(postInfo);
                 // console.log(postInfo);
@@ -27,7 +28,7 @@ function PostPage(){
 
         // console.log(userInfo.id);
 
-        fetch(`http://localhost:4000/posts/${id}`, {
+        fetch(`${BASE_URL}/posts/${id}`, {
             method: 'DELETE',
             body: userInfo,
             credentials: 'include',
@@ -68,7 +69,7 @@ function PostPage(){
 <Row>
 
     <Col>
-    <img src={`http://localhost:4000/${postInfo.cover}`} className="img-fluid my-4" alt="post-cover"/>
+    <img src={`${BASE_URL}/${postInfo.cover}`} className="img-fluid my-4" alt="post-cover"/>
     </Col>
 
     {/* <Col> */}

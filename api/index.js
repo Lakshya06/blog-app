@@ -18,7 +18,7 @@ const secretKey = '$2b$10$oJ7sla9U5vUp.AXxNyOmHu';
 const salt = bcrypt.genSaltSync(10);
 // console.log("Salt: ", salt);
 
-app.use(cors({credentials:true, origin: 'http://localhost:3000'}));
+app.use(cors({credentials:true, origin: 'https://6549e0b71882d05769054c83--fastidious-granita-7fe395.netlify.app'}));
 app.use(express.json())
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));

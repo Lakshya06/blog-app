@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { Container, Button, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import { BASE_URL } from "../helper";
 
 function LoginPage(props){
     const [username, setUsername] = useState('');
@@ -12,7 +13,7 @@ function LoginPage(props){
 
     async function handleLogin(ev){
         ev.preventDefault();
-        const res = await fetch('http://localhost:4000/login', {
+        const res = await fetch(`${BASE_URL}/login`, {
             method: 'POST',
             body: JSON.stringify({username, password}),
             headers: {'Content-type': 'application/json'},

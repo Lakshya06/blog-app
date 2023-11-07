@@ -2,6 +2,7 @@ import React from "react";
 import {formatISO9075} from "date-fns";
 import { Link } from "react-router-dom";
 import {Container, Row, Col} from "react-bootstrap";
+import { BASE_URL } from "../helper";
 
 function Post({_id ,title, summary, cover, createdAt, author}){
     // console.log(cover);
@@ -11,7 +12,7 @@ function Post({_id ,title, summary, cover, createdAt, author}){
                 <Row>
                     <Col xs={12} md={6}>
                     <Link to={`/posts/${_id}`}>
-                        <img src={'http://localhost:4000/'+cover} alt="post-title" className="img-fluid mx-auto d-block my-4"/>
+                        <img src={`${BASE_URL}/`+cover} alt="post-title" className="img-fluid mx-auto d-block my-4"/>
                     </Link>
                     </Col>
                     <Col xs={12} md={6}>

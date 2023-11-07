@@ -5,6 +5,7 @@ import {Container} from "react-bootstrap";
 import {Fab} from "@mui/material"
 import { UserContext } from "../UserContext";
 import { Link } from "react-router-dom";
+import { BASE_URL } from "../helper";
 
 
 function HomePage(){
@@ -15,7 +16,7 @@ function HomePage(){
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-      fetch('http://localhost:4000/posts').then(res => {
+      fetch(`${BASE_URL}/posts`).then(res => {
         res.json().then(posts => {
           // console.log(posts);
           setPosts(posts);
