@@ -36,7 +36,7 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 //     next();
 // });
 
-var cors = require(cors());
+// var cors = require(cors());
 app.use(cors());
 app.options('*',cors());
 var allowCrossDomain = function(req,res,next) {
