@@ -38,14 +38,14 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 
 // var cors = require(cors());
 app.use(cors());
-app.options('*',cors());
-var allowCrossDomain = function(req,res,next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();  
-}
-app.use(allowCrossDomain);
+// app.options('*',cors());
+// var allowCrossDomain = function(req,res,next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   next();  
+// }
+// app.use(allowCrossDomain);
 
 // mongoose.connect('mongodb+srv://etcetera:Lakshya3120@cluster0.g3uuv0x.mongodb.net/?retryWrites=true&w=majority').then(  () => console.log("DB connected!")).catch(err => console.log(err));
 
