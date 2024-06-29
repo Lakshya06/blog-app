@@ -9,9 +9,9 @@ const multer = require('multer');
 const uploadMiddleware = multer({dest: 'uploads/'})
 const fs = require('fs');
 const Post = require('./Models/Post');
-require('dotenv').config();
+// require('dotenv').config();
 
-const port = process.env.PORT || 4000;
+const port = 4000;
 const app = express();
 
 const secretKey = '$2b$10$oJ7sla9U5vUp.AXxNyOmHu';
@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 
 // mongoose.connect('mongodb+srv://etcetera:Lakshya3120@cluster0.g3uuv0x.mongodb.net/?retryWrites=true&w=majority').then(  () => console.log("DB connected!")).catch(err => console.log(err));
 
-mongoose.connect(process.env.DATABASE);
+mongoose.connect('mongodb+srv://etcetera:Lakshya3120@cluster0.g3uuv0x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
 
 app.post('/register', async (req, res) => {
     const {username, password} = req.body;
