@@ -18,23 +18,34 @@ const secretKey = '$2b$10$oJ7sla9U5vUp.AXxNyOmHu';
 const salt = bcrypt.genSaltSync(10);
 // console.log("Salt: ", salt);
 
-app.use(cors({credentials:true, origin: 'https://blog-app-psi-drab.vercel.app/'}));
+// app.use(cors({credentials:true, origin: 'https://blog-app-psi-drab.vercel.app/'}));
 app.use(express.json())
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader(
-      "Access-Control-Allow-Methods",
-      "OPTIONS, GET, POST, PUT, PATCH, DELETE"
-    );
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    if (req.method === "OPTIONS") {
-      return res.sendStatus(200);
-    }
-    next();
-});
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+//     res.setHeader(
+//       "Access-Control-Allow-Methods",
+//       "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+//     );
+//     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//     if (req.method === "OPTIONS") {
+//       return res.sendStatus(200);
+//     }
+//     next();
+// });
+
+var cors = require(cors());
+app.use(cors());
+app.options('*',cors());
+var allowCrossDomain = function(req,res,next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();  
+}
+app.use(allowCrossDomain);
 
 // mongoose.connect('mongodb+srv://etcetera:Lakshya3120@cluster0.g3uuv0x.mongodb.net/?retryWrites=true&w=majority').then(  () => console.log("DB connected!")).catch(err => console.log(err));
 
